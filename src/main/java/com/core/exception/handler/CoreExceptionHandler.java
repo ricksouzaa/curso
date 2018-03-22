@@ -44,7 +44,7 @@ public class CoreExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, headers, status, request);
 	}
 
-	@ExceptionHandler({ EmptyResultDataAccessException.class })
+	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
 		String friendlyMessage = messageSource.getMessage("recurso.nao-encontrado", null, LocaleContextHolder.getLocale());
 		String originalMessage = ExceptionUtils.getRootCauseMessage(ex);
@@ -52,7 +52,7 @@ public class CoreExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
 
-	@ExceptionHandler({ DataIntegrityViolationException.class } )
+	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
 		String friendlyMessage = messageSource.getMessage("recurso.operacao-nao-permitida", null, LocaleContextHolder.getLocale());
 		String originalMessage = ExceptionUtils.getRootCauseMessage(ex);
@@ -60,7 +60,7 @@ public class CoreExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
-	@ExceptionHandler({ ServiceException.class })
+	@ExceptionHandler(ServiceException.class)
 	public ResponseEntity<Object> handleServiceException(ServiceException ex) {
 		String friendlyMessage = messageSource.getMessage(ex.getCode(), null, LocaleContextHolder.getLocale());
 		String originalMessage = ExceptionUtils.getRootCauseMessage(ex);
