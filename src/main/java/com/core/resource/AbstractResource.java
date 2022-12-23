@@ -37,7 +37,7 @@ public abstract class AbstractResource<E extends AbstractEntity, R extends JpaRe
 	@Autowired
 	protected S service;
 
-	@GetMapping(params = "all")
+	@GetMapping(params = "all") 
 	public ResponseEntity<List<E>> list() {
 		List<E> categorias = repository.findAll();
 		return ResponseEntity.ok(categorias);

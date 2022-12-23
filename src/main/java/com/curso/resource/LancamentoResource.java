@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.core.resource.AbstractResource;
+import com.curso.model.LancamentoResumo;
 import com.curso.model.ResumoLancamento;
 import com.curso.model.entity.Lancamento;
 import com.curso.model.filter.LancamentoFilter;
@@ -30,6 +31,11 @@ public class LancamentoResource extends AbstractResource<Lancamento, LancamentoR
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		return repository.filtrar(lancamentoFilter, pageable);
+	}
+
+	@GetMapping("/resumir")
+	public List<LancamentoResumo> resumir() {
+		return repository.findAllBy();
 	}
 
 	@GetMapping(params = "resumo")
